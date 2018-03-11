@@ -2,6 +2,7 @@ package com.cafe24.bookmall.app;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Scanner;
 
 import com.cafe24.bookmall.dao.MemberDao;
 import com.cafe24.bookmall.dao.test.BookDaoTest;
@@ -18,6 +19,96 @@ public class BookMallApp {
 		updateAll();
 		System.out.println("================================");
 		getAllList();
+		
+		/*Scanner sc = new Scanner(System.in);
+		while(true)	{
+				HashMap<Boolean, Long> loginCheck = new HashMap<>();
+				long memberNo = 0;
+				System.out.print(
+				"\n=================== Welcom BookMall ===================\n"+
+				"1. login\n"+
+				"2. show category\n"+
+				"3. show book list\n"+
+				"4. put in my cart \n"+
+				"5. show my cart\n"+
+				"6. order\n"+
+				"7. show order list\n"+
+				"8. logout\n"+
+				"> " );
+				int click = sc.nextInt();
+				
+				switch(click) {
+					case 1: 
+						String email = sc.next();
+						System.out.print("email: ");
+						String password = sc.next();
+						System.out.print("password: ");
+						loginCheck = MemberDaoTest.login(email, password);
+						if (loginCheck.containsKey(true)) {
+							System.out.println("로그인 되었습니다.");
+							memberNo = loginCheck.get(true);
+						} else {
+							System.out.println("아이디 또는 비밀번호를 확인해 주세요.");
+						}
+						break;
+					case 2: 
+						CategoryDaoTest.getListTest();
+						break;
+					case 3: 
+						BookDaoTest.getListTest();
+						break;
+					case 4:
+						BookDaoTest.getListTest();
+						System.out.print("담고 싶은 책의 번호를 입력하세요. >>");
+						int bno = sc.nextInt();
+						System.out.println("수량을 입력하세요. >>");
+						int amount = sc.nextInt();
+						CartDaoTest.updateTest(memberNo, bno, amount); // 회원번호, 책번호, 수량
+						break;
+					case 5:
+						CartDaoTest.getListTest();
+						break;
+					case 6:
+						BookDaoTest.getListTest();
+						HashMap<Integer, Integer> map = new HashMap<>();
+						while (true) {
+							System.out.print("담고 싶은 책의 번호를 입력하세요. >>");
+							bno = sc.nextInt();
+							System.out.print("수량을 입력하세요. >>");
+							amount = sc.nextInt();
+							map.put(bno, amount);
+							System.out.print("완료하려면 -1 을 입력하세요. >>");
+							if (sc.nextInt() == -1) {
+								break;
+							}
+						}
+						// 주문 도서 선택
+						OrderVo vo = new OrderVo();
+						MemberVo member = new MemberVo();
+						member.setMemberNo(memberNo); // 주문자 회원 번호
+						System.out.print("배송지를 입력하세요. >>");
+						String address = sc.nextLine();
+						vo.setAddress(address); // 배송지
+						vo.setMemberVo(member); // 주문에 주문자 입력
+						OrderDaoTest.updateTest(vo, map);
+						OrderDaoTest.updateBookOrderTest(map);
+						break;
+					case 7:
+						OrderDaoTest.getListTest(memberNo);
+						break;
+					case 8:
+						if (loginCheck.containsKey(true)) {
+							loginCheck = MemberDaoTest.logout();
+							memberNo = 0;
+						} else {
+							System.out.println("로그인 상태가 아닙니다.");
+						}
+						break;
+					default:
+						System.out.println("\n Wrong.\n\n");
+				}
+			
+		}*/
 	}
 	
 	public static void updateAll() {

@@ -30,10 +30,12 @@ public class BookDaoTest {
 		System.out.println("===============================================");
 		System.out.println("도서 목록");
 		System.out.println("-----------------------------------------------");
-		for (BookVo vo : list) {
-			System.out.println("제목: "+vo.getTitle()
-							+"\n가격: "+vo.getPrice()
-							+"원\n분야: "+vo.getCategoryTitle());
+//		for (BookVo vo : list) {
+		for (int i = list.size()-1; i >= 0; i--) {
+			System.out.println("도서번호: "+list.get(i).getBookNo()
+							+" | 제목: "+list.get(i).getTitle()
+							+" | 가격: "+list.get(i).getPrice()
+							+"원 | 분야: "+list.get(i).getCategoryTitle());
 			System.out.println("-----------------------------------------------");
 		}
 		System.out.println("===============================================");

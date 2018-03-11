@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.cafe24.bookmall.vo.MemberVo;
@@ -85,5 +86,35 @@ public class MemberDao {
 		}
 		
 		return list;		
+	}
+	
+	public HashMap<Boolean, Long> login(String email, String password) {
+		conn = MyConnection.getConnection();
+		ResultSet rs = null;
+		HashMap<Boolean, Long> loginCheck = new HashMap<>();
+		String sql = "select no " + 
+				"from member " + 
+				"where email = ? " + 
+				"and password = password(?)";
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, email);
+			pstmt.setString(2, password);
+			rs = pstmt.executeQuery();
+			if (rs != null) {
+				loginCheck.put(true, rs.getLong(1));
+				return loginCheck;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		loginCheck.put(false, 0l);
+		return loginCheck;
+	}
+	
+	public HashMap<Boolean, Long> logout() {
+		HashMap<Boolean, Long> loginCheck = new HashMap<>();
+		loginCheck.put(false, 0l);
+		return loginCheck;
 	}
 }

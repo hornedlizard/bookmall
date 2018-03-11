@@ -1,6 +1,8 @@
 package com.cafe24.bookmall.dao.test;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.cafe24.bookmall.dao.MemberDao;
 import com.cafe24.bookmall.vo.MemberVo;
@@ -38,5 +40,15 @@ public class MemberDaoTest {
 			System.out.println("-----------------------------------------------");
 		}
 		System.out.println("===============================================");
+	}
+	
+	public static HashMap<Boolean, Long> login(String email, String password) {
+		MemberDao dao = new MemberDao();
+		return dao.login(email, password);
+	}
+	
+	public static HashMap<Boolean, Long> logout() {
+		MemberDao dao = new MemberDao();
+		return dao.logout();
 	}
 }
